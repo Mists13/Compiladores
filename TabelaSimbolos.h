@@ -8,8 +8,8 @@
 typedef struct 
 {
     char identificador;
-    // char* categoria; adcionei esse tbm no tablet mas n lembro o pq
-    char* atributos;
+    char* categoria; // Categoria do identificador, algo como 'VS' 
+    char* infos; // Nivel lexico e deslocamento, algo como '[0, 0, int]'
 }simbolo;
 
 typedef struct 
@@ -20,7 +20,7 @@ typedef struct
 }tabela;
 
 // Insere o identificador indicado na Tabela de Simbolos, assim como seus atributos
-void insere(char identificador, char* atributos, tabela* tabela)
+void insere(char identificador, char* categoria, char* infos, tabela* tabela)
 {
     printf("Inserindo identificador '%c' e seus atributos '%s'\n", identificador, atributos);
     if(tabela->topo == tabela->max) // se cheia ... realloc talvez seja necessario
@@ -31,9 +31,11 @@ void insere(char identificador, char* atributos, tabela* tabela)
     }
     tabela->topo++;
     tabela->simbolos[tabela->topo].identificador = identificador;
-    tabela->simbolos[tabela->topo].atributos = malloc(strlen(atributos) * sizeof(char));
-    strcpy(tabela->simbolos[tabela->topo].atributos, atributos);
-    printf("Inserido com sucesso\n");
+    tabela->simbolos[tabela->topo].categoria = malloc(strlen(categoria) * sizeof(char));
+    strcpy(tabela->simbolos[tabela->topo].categoria, categoria);
+    tabela->simbolos[tabela->topo].infos = malloc(strlen(infos) * sizeof(char));
+    strcpy(tabela->simbolos[tabela->topo].infos, infos);
+    printf("Simbolo inserido com sucesso na Tabela de Simbolos\n");
 } 
 
 // Retorna a entrada (os atributos) da Tabela de Simbolos, associado ao idenficador procurado
@@ -45,7 +47,7 @@ char* busca(char identificador, tabela* tabela)
     {
         if (tabela->simbolos[i].identificador == identificador)
         {
-            return tabela->simbolos[i].atributos;
+            return tabela->simbolos[i].infos; // retorna nivel lexico e deslocamento
         }
         i--;
     }

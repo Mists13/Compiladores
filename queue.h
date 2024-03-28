@@ -58,4 +58,6 @@ int queue_append (queue_t **queue, queue_t *elem) ;
 
 int queue_remove (queue_t **queue, queue_t *elem) ;
 
+void *queue_desempilha (queue_t **queue) ;
+
 #endif

@@ -19,10 +19,10 @@ typedef struct
     simbolo* simbolos;
 }tabela;
 
-// Insere o identificador indicado na Tabela de Simbolos, assim como seus atributos
+// Insere o identificador indicado na Tabela de Simbolos, assim como suas infos e categoria
 void insere(char identificador, char* categoria, char* infos, tabela* tabela)
 {
-    printf("Inserindo identificador '%c' e seus atributos '%s'\n", identificador, atributos);
+    printf("Inserindo identificador '%c', sua caregoria '%s' e suas infos '%s'\n", identificador, categoria, infos);
     if(tabela->topo == tabela->max) // se cheia ... realloc talvez seja necessario
     {
         printf("Tabela cheia ...\nAumentando Tamanho ...");
@@ -38,7 +38,7 @@ void insere(char identificador, char* categoria, char* infos, tabela* tabela)
     printf("Simbolo inserido com sucesso na Tabela de Simbolos\n");
 } 
 
-// Retorna a entrada (os atributos) da Tabela de Simbolos, associado ao idenficador procurado
+// Retorna a entrada (as infos) da Tabela de Simbolos, associado ao idenficador procurado
 char* busca(char identificador, tabela* tabela) 
 {
     printf("Buscando '%c' na tabela\n", identificador);

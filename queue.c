@@ -152,3 +152,44 @@ int queue_remove (queue_t **queue, queue_t *elem){
     return 0;
 
 }
+
+// diferentemente de SO essa fila vai ter que se comportar como uma pilha, entao precisamos de uma funcao para desempilhar
+// acho que eh assim mas n tenho certeza
+int queue_desempilha (queue_t **queue) {
+   
+    //confere se existe fila ou elemento
+    if(!queue || !elem){
+        fprintf(stderr, "Fila ou elemento não existem");
+        return -1;
+    }
+    
+    //confere se fila esta vazia
+    if(vazia(*queue)){
+        return -1;
+    }
+
+    //confere se elemento pertence a essa fila
+    if(!busca(queue, elem)){
+        return -1;
+    }
+
+    //remocao
+    elem->prev->next = elem->next;
+    elem->next->prev = elem->prev;
+
+    //remocao na cabeca
+    if(*queue == elem){
+        //se so tem cabeca nula tudo
+        if(elem->prev == elem && elem->next == elem){
+            *queue = NULL;
+        }
+        else{
+            *queue = elem->next;
+        }
+    }
+
+    elem->next = NULL;
+    elem->prev = NULL; 
+
+    return elem; 
+}

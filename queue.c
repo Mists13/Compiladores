@@ -155,7 +155,7 @@ int queue_remove (queue_t **queue, queue_t *elem){
 
 // diferentemente de SO essa fila vai ter que se comportar como uma pilha, entao precisamos de uma funcao para desempilhar
 // acho que eh assim mas n tenho certeza
-int queue_desempilha (queue_t **queue) {
+void *queue_desempilha (queue_t **queue) {
    
     //confere se existe fila ou elemento
     if(!queue || !elem){

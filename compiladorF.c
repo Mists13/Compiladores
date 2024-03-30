@@ -43,3 +43,7 @@ int imprimeErro ( char* erro ) {
   fprintf (stderr, "Erro na linha %d - %s\n", nl, erro);
   exit(-1);
 }
+
+void yyerror(const char *s) {
+    fprintf(stderr, "Syntax error: %s\n", s);
+}

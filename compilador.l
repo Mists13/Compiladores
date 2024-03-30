@@ -156,6 +156,18 @@ end { simbolo = simb_end;
 	  return GOTO;
 } 
 
+read  { simbolo = simb_read;
+          strncpy (token, yytext, TAM_TOKEN);
+          IMPRIME("read       ");
+          return READ;
+ }
+
+write  { simbolo = simb_write;
+          strncpy (token, yytext, TAM_TOKEN);
+          IMPRIME("write      ");
+          return WRITE;
+ }
+
 \if { simbolo  = simb_if;
 	  strncpy (token, yytext, TAM_TOKEN);
 	  IMPRIME("if ");
@@ -209,6 +221,24 @@ end { simbolo = simb_end;
 	  IMPRIME("not ");
 	  return NOT;
 }
+
+true  { simbolo = simb_true;
+          strncpy (token, yytext, TAM_TOKEN);
+          IMPRIME("true       ");
+          return TRUE;
+ }
+
+false  { simbolo = simb_false;
+          strncpy (token, yytext, TAM_TOKEN);
+          IMPRIME("false      ");
+          return FALSE;
+ }
+
+{numero}  { simbolo = simb_numero;
+          strncpy (token, yytext, TAM_TOKEN);
+          IMPRIME("numero     ");
+          return NUMERO;
+ }
 
 {ident} { simbolo = simb_identificador;
           strncpy (token, yytext, TAM_TOKEN);

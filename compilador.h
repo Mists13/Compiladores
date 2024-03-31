@@ -11,6 +11,7 @@
  *
  * ------------------------------------------------------------------- */
 
+#include "tabelaSimbolos.h"
 #define TAM_TOKEN 16
 
 typedef enum simbolos {
@@ -35,7 +36,6 @@ extern char token[TAM_TOKEN];
 extern int nivel_lexico;
 extern int desloc;
 extern int nl;
-
 
 /* -------------------------------------------------------------------
  * prototipos globais

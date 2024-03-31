@@ -53,7 +53,7 @@ parte_declara_vars:  var
 ;
 
 
-var         : { } VAR declara_vars
+var         : {} VAR declara_vars
             |
 ;
 
@@ -61,18 +61,15 @@ declara_vars: declara_vars declara_var
             | declara_var
 ;
 
-declara_var : { }
+declara_var : { num_vars = 0;}
               lista_id_var DOIS_PONTOS
               tipo
               {
-               
-              }
-              PONTO_E_VIRGULA 
-               {
                   char buffer[15] = "AMEM ";
                   sprintf(buffer + strlen(buffer), "%d", num_vars);
                   geraCodigo(NULL, buffer);
-               }
+              }
+              PONTO_E_VIRGULA 
 ;
 
 tipo        : IDENT

@@ -40,12 +40,19 @@ Infos* busca(char* identificador, Tabela* tabela)
 // Retira as ultimas n entradas da Tabela de Simbolos
 void retira(int n, Tabela* tabela)
 {
-    printf("Retirando %i identificadores da pilha\n", n);
+    printf("[FUNCAO RETIRA]     Retirando %i identificadores da pilha\n", n);
     if ((tabela->topo - n) < 0)
     {
         printf("ERRO: A pilha possui menos de %i valores\n", n);
     }
-    tabela->topo = tabela->topo - n;
+    for (int i=0; i<n; i++){
+        free(tabela->simbolos[tabela->topo].identificador);
+        free(tabela->simbolos[tabela->topo].categoria);
+        free(tabela->simbolos[tabela->topo].infos);
+        tabela->topo-=1;
+    }
+    printf("[FUNCAO RETIRA]     Topo atual %i\n", tabela->topo);
+    
 }
 
 void imprime(Tabela* tabela) {

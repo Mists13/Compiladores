@@ -44,6 +44,20 @@ bloco       :
               }
 
               comando_composto
+              {
+               int dmem_var = 0;
+               int i = ts->topo;
+              while( i>0 && ts->simbolos[i].infos->nivel_lexico == nivel_lexico) 
+               {
+                  dmem_var++;
+                  i--;
+               }
+               retira(dmem_var, ts);
+               char buffer[15] = "DMEM ";
+               sprintf(buffer + strlen(buffer), "%d", dmem_var);
+               geraCodigo(NULL, buffer);
+               imprime(ts);
+              }
               ;
 
 
@@ -115,7 +129,7 @@ comandos:
 int main (int argc, char** argv) {
    FILE* fp;
    extern FILE* yyin;
-
+   
    if (argc<2 || argc>2) {
          printf("usage compilador <arq>a %d\n", argc);
          return(-1);
